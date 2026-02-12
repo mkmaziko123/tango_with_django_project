@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Rango</title>
+</head>
+<body>
+    <h1>Rango says...</h1>
+    <p>here is the about page.</p>
+
+    <div>
+        This tutorial has been put together by Your Name.
+    </div>
+
+    <div>
+        <!-- Link back to index page -->
+        <a href="{% url 'rango:index' %}">Index</a>
+    </div>
+
+    <div>
+        <!-- Static image of Rango -->
+        <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango">
+    </div>
+
+    <div>
+        <!-- Media image of a cat -->
+        <img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat">
+    </div>
+</body>
+</html>
