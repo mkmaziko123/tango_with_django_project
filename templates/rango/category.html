@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rango</title>
+    <title>Rango - Category</title>
 </head>
 <body>
     <div>
         {% if category %}
+            <!-- Category Name -->
             <h1>{{ category.name }}</h1>
 
+            <!-- Most Viewed Pages in Category -->
             <h2>Pages in this Category</h2>
             {% if pages %}
                 <ul>
                     {% for page in pages %}
                         <li>
-                            <a href="{{ page.url }}">{{ page.title }}</a>
+                            <a href="{{ page.url }}" target="_blank">{{ page.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
             {% else %}
-                <strong>No pages currently in category.</strong>
+                <strong>No pages currently in this category.</strong>
             {% endif %}
+
+        
+            <div>
+                <a href="{% url 'rango:add_page' category.slug %}">Add a New Page</a>
+            </div>
 
         {% else %}
             <strong>The specified category does not exist.</strong>
         {% endif %}
     </div>
 
+    <!-- Link Back to Index -->
     <div>
         <a href="{% url 'rango:index' %}">Back to Index</a>
     </div>
