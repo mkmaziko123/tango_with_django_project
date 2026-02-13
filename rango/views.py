@@ -4,6 +4,8 @@ from rango.forms import CategoryForm, PageForm
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from rango.forms import UserForm, UserProfileForm
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
     """Display the top 5 categories by likes and top 5 pages by views."""
@@ -35,7 +37,7 @@ def show_category(request, category_name_slug):
     }
     return render(request, 'rango/category.html', context)
 
-
+@login_required
 def add_category(request):
     """Handle adding a new category via a form."""
     if request.method == 'POST':
@@ -53,7 +55,7 @@ def add_category(request):
 
 
 
-
+@login_required
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -132,7 +134,7 @@ def user_login(request):
         return render(request, 'rango/login.html')
 @login_required
 def restricted(request):
-    return HttpResponse("Since you're logged in, you can see this text!")
+    return render(request, 'rango/restricted.html')
 @login_required
 def user_logout(request):
     logout(request)
