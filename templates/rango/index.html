@@ -1,5 +1,4 @@
 {% extends 'rango/base.html' %}
-{% load staticfiles %}
 
 {% block title_block %}
 Homepage
@@ -8,6 +7,8 @@ Homepage
 {% block body_block %}
 <h1>Rango Homepage</h1>
 <p>{{ boldmessage }}</p>
+
+<p>Visits: {{ visits }}</p>
 
 <h2>Top Categories</h2>
 {% if categories %}
@@ -25,9 +26,9 @@ Homepage
 {% endif %}
 
 <h2>Top Pages</h2>
-{% if top_pages %}
+{% if pages %}
     <ul>
-        {% for page in top_pages %}
+        {% for page in pages %}
             <li>
                 <a href="{{ page.url }}">{{ page.title }}</a>
             </li>
